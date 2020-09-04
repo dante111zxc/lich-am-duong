@@ -1,0 +1,22 @@
+.tbl-lad {
+    margin-top: 25px;
+}
+.tbl-lad p {
+    margin-bottom: 0;
+}
+.tbl-lad td {
+    padding: 7px 4px;
+    text-align: center;
+    border: 1px solid #f0c9c9;
+    vertical-align: middle;
+}
+.w-50 {
+    width: 50%;
+}
+.lad-table-title {
+    color: #c20000;
+}
+
+.lad-bg-primary {
+    background-color: #ffeaea;
+}
