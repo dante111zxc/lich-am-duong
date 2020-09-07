@@ -22,7 +22,7 @@ function lad_creat_table (){
     $charset_collate  = $wpdb->get_charset_collate();
 
     //creat table
-    $sql = "CREATE TABLE $table_name (
+    $sql = "CREATE TABLE IF NOT EXISTS $table_name (
       id mediumint(9) NOT NULL AUTO_INCREMENT,
       ngay_can_chi varchar(255) NOT NULL,
       noi_dung longtext NOT NULL,
@@ -36,8 +36,31 @@ function lad_creat_table (){
     $success = empty($wpdb->last_error);
     return $success;
 }
+function lad_insert_data (){
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'data_gio_hoang_dao';
 
+    $data_json = file_get_contents(LAD__DIR__ . 'wp_data_gio_hoang_dao.json');
+    $data = json_decode($data_json);
+    if (!empty($data)) {
+        foreach ($data as $item) {
+            $wpdb->insert($table_name, (array) $item);
+            /*$wpdb->insert_id*/
+        }
+    }
+}
+function lad_remove_table (){
+    global $wpdb;
+    $table_name = $wpdb->prefix . 'data_gio_hoang_dao';
+    $sql = "DROP TABLE IF EXISTS $table_name";
+    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+    dbDelta( $sql );
+    $success = empty($wpdb->last_error);
+    return $success;
+}
+register_deactivation_hook( __FILE__, 'lad_remove_table' );
 register_activation_hook( __FILE__, 'lad_creat_table');
+register_activation_hook(__FILE__, 'lad_insert_data');
 
 
 require LAD__DIR__ . 'Lunar2solar.php';
