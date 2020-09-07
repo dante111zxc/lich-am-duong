@@ -82,39 +82,39 @@
         <tr>
             <td class="w-50">
                 <span>
-                    <b class="lad-text-2">Tháng <?php echo date('n', time()) ?> năm <?php echo date('Y', time()) ?></b>
+                    <b id="lad-text-2">Tháng <?php echo date('n', time()) ?> năm <?php echo date('Y', time()) ?></b>
                 </span>
             </td>
             <td class="w-50">
                 <span>
-                    <b class="lad-text-3">Tháng <?php echo date('n', strtotime($dateTimeLunar)) ?> năm <?php echo date('Y', strtotime($dateTimeLunar)) ?> (<?php echo $canChiNam ?>)</b>
+                    <b id="lad-text-3">Tháng <?php echo date('n', strtotime($dateTimeLunar)) ?> năm <?php echo date('Y', strtotime($dateTimeLunar)) ?> (<?php echo $canChiNam ?>)</b>
                 </span>
             </td>
         </tr>
         <tr>
             <td class="w-50">
-                <p style="font-size: 22px"><b class="lad-text-4"><?php echo date('j') ?></b></p>
-                <p><b class="lad-text-5"><?php echo $dayOfWeekSolar; ?></b></p>
+                <p style="font-size: 22px"><b id="lad-text-4"><?php echo date('j') ?></b></p>
+                <p><b id="lad-text-5"><?php echo $dayOfWeekSolar; ?></b></p>
             </td class=w-50>
             <td>
-                <p style="font-size: 22px"><b class="lad-text-6"><?php echo date('j', strtotime($dateTimeLunar)) ?></b></p>
-                <p>
+                <p style="font-size: 22px"><b id="lad-text-6"><?php echo date('j', strtotime($dateTimeLunar)) ?></b></p>
+                <p id="lad-text-7">
                     <span>Ngày: <b><?php echo $canChiNgay ?></b></span>
                 </p>
-                <p>
+                <p id="lad-text-8">
                     <span>Tháng: <b><?php echo $canChiThang ?></b></span>
                 </p>
             </td>
         </tr>
         <tr class="lad-bg-primary">
             <td colspan="2">
-                <span class="lad-table-title"><b class="lad-text-7">Giờ hoàng đạo (Giờ tốt)</b></span>
+                <span class="lad-table-title"><b>Giờ hoàng đạo (Giờ tốt)</b></span>
             </td>
         </tr>
         <tr>
             <td colspan="2">
                 <span>
-                    <b class="lad-text-8">
+                    <b id="lad-text-9">
                         <?php
                             $gioHoangDao = lad_gioHoangDao(date('Y-m-d'));
                             if ( !empty($gioHoangDao) ) {
@@ -127,7 +127,6 @@
                                 }
                             }
                         ?>
-
                     </b>
                 </span>
             </td>

@@ -91,9 +91,16 @@ if ( ! function_exists( 'get_data' ) ) {
             //2: Âm lịch -> dương lịch
             $type = $query['type'];
 
+
             switch ($type) {
-                case 1: $result = getDataLunarDay("$year-$month-$day"); break;
-                case 2: $result = getDataSolarDay("$year-$month-$day"); break;
+                case 1:
+                    $result = getDataLunarDay("$year-$month-$day");
+                    $result['type'] = (int) $type;
+                    break;
+                case 2:
+                    $result = getDataSolarDay("$year-$month-$day");
+                    $result['type'] = (int) $type;
+                    break;
             }
 
             wp_send_json_success($result);
