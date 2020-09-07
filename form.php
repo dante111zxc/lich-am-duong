@@ -111,7 +111,23 @@
         </tr>
         <tr>
             <td colspan="2">
-                <span><b class="lad-text-8">Tý (23h-01h), Dần (03h-05h), Mão (05h-07h), Ngọ (11h-13h), Mùi (13h-15h), Dậu (17h-19h)</b></span>
+                <span>
+                    <b class="lad-text-8">
+                        <?php
+                            $gioHoangDao = lad_gioHoangDao(date('Y-m-d'));
+                            if ( !empty($gioHoangDao) ) {
+                                foreach ( $gioHoangDao as $key => $item ) {
+                                    if ( $key !== count($gioHoangDao)-1 ) {
+                                        echo $item['gio_am'] . ' ('.$item['gio_duong'].')' . ', ';
+                                    } else {
+                                        echo $item['gio_am'] . ' ('.$item['gio_duong'].')';
+                                    }
+                                }
+                            }
+                        ?>
+
+                    </b>
+                </span>
             </td>
         </tr>
     </tbody>

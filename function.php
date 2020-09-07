@@ -14,7 +14,6 @@ if (!function_exists('lad_getThu')) {
     }
 }
 
-
 if (!function_exists('lad_getDiaChiNgay')) {
     function lad_getDiaChiNgay ($date = null){
         $lunar2Solar = new Lunar2solar();
@@ -44,6 +43,26 @@ if (!function_exists('lad_getCanChiThang')) {
     }
 }
 
+if (!function_exists('lad_gioHoangDao')) {
+    function lad_gioHoangDao($date = null){
+        global $wpdb;
+        $table = $wpdb->prefix . 'data_gio_hoang_dao';
+        $lunar2Solar = new Lunar2solar();
+        $ngayCanChi = $lunar2Solar->getNgayCanChi($date);
+        $ngayCanChi = mb_strtolower($ngayCanChi,'UTF-8');
+        $sql = "SELECT * FROM $table WHERE LOWER(ngay_can_chi) = '$ngayCanChi'";
+        $row = $wpdb->get_row($sql);
+        if (!empty($row->noi_dung)) {
+            $data = json_decode($row->noi_dung);
+            $gio_hoang_dao = [];
+            foreach ($data as $key => $item) {
+                if (!empty($item) && $item->gio_hoang_dao === 'Giờ Hoàng Đạo') {
+                    $gio_hoang_dao[$key]['gio_am'] = $item->gio_am;
+                    $gio_hoang_dao[$key]['gio_duong'] = $item->gio_duong;
+                }
+            }
 
-//$today = date('Y-m-d', time());
-//dd(getLunarFromDay($today));
+        }
+        return $gio_hoang_dao;
+    }
+}

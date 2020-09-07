@@ -31,8 +31,7 @@ function lad_creat_table (){
       PRIMARY KEY  (id),
       FULLTEXT KEY `FULLTEXT` (`ngay_can_chi`)
     ) $charset_collate;";
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta( $sql );
+    $wpdb->query($sql);
     $success = empty($wpdb->last_error);
     return $success;
 }
@@ -53,14 +52,14 @@ function lad_remove_table (){
     global $wpdb;
     $table_name = $wpdb->prefix . 'data_gio_hoang_dao';
     $sql = "DROP TABLE IF EXISTS $table_name";
-    require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
-    dbDelta( $sql );
+    $wpdb->query($sql);
     $success = empty($wpdb->last_error);
     return $success;
 }
-register_deactivation_hook( __FILE__, 'lad_remove_table' );
+
 register_activation_hook( __FILE__, 'lad_creat_table');
 register_activation_hook(__FILE__, 'lad_insert_data');
+register_uninstall_hook( __FILE__, 'lad_remove_table' );
 
 
 require LAD__DIR__ . 'Lunar2solar.php';
