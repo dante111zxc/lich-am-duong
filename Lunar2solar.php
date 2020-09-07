@@ -6,6 +6,7 @@ class Lunar2solar
         return floor( $d ) ;
     }
 
+    //Chuyển ngày dương sang âm
     public function getLunarFromDay($date = null){
         $day = date('d',strtotime($date));
         $month = date('m',strtotime($date));
@@ -191,6 +192,8 @@ class Lunar2solar
             $lunarYear,
             $lunarLeap ) ;
     }
+
+
 
     /* Convert a lunar date to the corresponding solar date */
     public function convertLunar2Solar( $lunarDay, $lunarMonth, $lunarYear, $lunarLeap, $timeZone )

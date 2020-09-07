@@ -23,13 +23,15 @@
 
 
 ?>
-
+<script>
+    var home_url  = '<?php echo home_url() ?>';
+</script>
 <form method="get" id="lichAmDuong">
     <p>
         Ngày:
         <select name="day" id="getDay">
             <option value="0">Ngày</option>
-            <?php for ( $day = 1; $day <= $calDayInMonth; $day++ ) : ?>
+            <?php for ( $day = 1; $day <= 31; $day++ ) : ?>
                 <option value="<?php echo  $day ?>" <?php echo ( $day === (int) $currentDay ) ? 'selected="selected"' : '' ?> ><?php echo $day ?></option>
             <?php endfor; ?>
         </select>
