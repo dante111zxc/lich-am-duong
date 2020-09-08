@@ -63,6 +63,6 @@ if (!function_exists('lad_gioHoangDao')) {
             }
 
         }
-        return $gio_hoang_dao;
+        return array_values($gio_hoang_dao);
     }
 }
